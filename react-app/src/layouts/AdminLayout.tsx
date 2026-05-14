@@ -10,7 +10,7 @@ export default function AdminLayout() {
         <div className="p-4 md:p-6 flex items-center justify-between md:justify-center border-b border-surface-variant/50">
           <div className="flex items-center gap-2">
             <span className="material-symbols-outlined text-primary text-3xl">admin_panel_settings</span>
-            <h1 className="font-headline-md text-primary hidden md:block">PCF Admin</h1>
+            <h1 className="font-headline-md text-primary hidden md:block">Song Huyền Admin</h1>
           </div>
           <button 
             onClick={() => navigate('/')}

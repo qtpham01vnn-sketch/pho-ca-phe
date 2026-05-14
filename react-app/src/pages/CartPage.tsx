@@ -205,7 +205,7 @@ export default function CartPage() {
       </section>
 
       {/* Fixed Bottom Action */}
-      <div className="fixed bottom-[72px] md:bottom-24 left-0 w-full bg-surface p-4 border-t border-surface-variant/50 shadow-[0_-8px_30px_rgba(0,0,0,0.05)] z-40">
+      <div className="fixed bottom-[88px] md:bottom-28 left-0 w-full bg-surface p-4 border-t border-surface-variant/50 shadow-[0_-8px_30px_rgba(0,0,0,0.05)] z-40">
         <div className="max-w-lg mx-auto">
           <button 
             onClick={async () => {
