@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 export default function BottomNavBar() {
   return (
-    <nav className="fixed bottom-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface-container-lowest shadow-[0_-4px_20px_rgba(0,0,0,0.04)] rounded-t-xl">
+    <nav className="fixed bottom-0 w-full z-50 flex justify-around items-center px-2 py-2 bg-surface-container-lowest shadow-[0_-4px_20px_rgba(0,0,0,0.04)] border-t border-surface-variant/50">
       <NavLink
         to="/menu"
         className={({ isActive }) =>

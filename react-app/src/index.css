@@ -10,7 +10,7 @@
     font-variation-settings: 'FILL' 1;
   }
   body {
-    min-height: max(884px, 100dvh);
+    min-height: 100dvh;
     @apply bg-surface text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container antialiased;
   }
 }
