@@ -16,7 +16,7 @@ export default function TopAppBar() {
         className="font-headline-md text-primary font-bold text-lg active:scale-95 transition-all truncate"
         title="Quay lại trang chính"
       >
-        Cà Phê Song Huyền
+        Cà Phê Song Huy
       </button>
       <button className="material-symbols-outlined text-primary hover:bg-surface-variant transition-colors p-2 rounded-full active:scale-95 duration-100">
         account_circle

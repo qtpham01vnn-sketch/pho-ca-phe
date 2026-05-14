@@ -9,7 +9,7 @@ export default function StaffLayout() {
       <aside className="w-full md:w-64 bg-surface dark:bg-surface-dim shadow-sm md:shadow-[4px_0_24px_rgba(0,0,0,0.04)] z-50 flex flex-col h-auto md:h-screen sticky top-0">
         <div className="p-4 md:p-6 flex items-center justify-between md:justify-center border-b border-surface-variant/50">
           <div className="flex items-center gap-2">
-            <h1 className="font-headline-md text-primary hidden md:block">Cà Phê Song Huyền</h1>
+            <h1 className="font-headline-md text-primary hidden md:block">Cà Phê Song Huy</h1>
           </div>
           <button 
             onClick={() => navigate('/')}

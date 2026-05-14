@@ -66,7 +66,7 @@ export default function WelcomePage() {
         <div className="w-32 h-32 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
           <span className="material-symbols-outlined text-primary text-6xl">coffee</span>
         </div>
-        <h1 className="font-headline-md text-4xl text-primary font-bold mb-2 tracking-tight">Cà Phê Song Huyền</h1>
+        <h1 className="font-headline-md text-4xl text-primary font-bold mb-2 tracking-tight">Cà Phê Song Huy</h1>
       </div>
       
       <p className="text-on-surface-variant font-body-md mb-12">Hương vị đậm đà, trải nghiệm hiện đại</p>
@@ -109,7 +109,7 @@ export default function WelcomePage() {
 
       {/* Subtle Hint for Staff at bottom - very low contrast */}
       <div className="fixed bottom-6 text-[10px] text-outline-variant uppercase tracking-[0.2em] opacity-30">
-        &copy; 2026 Cà Phê Song Huyền - Vận hành bởi Antigravity
+        &copy; 2026 Cà Phê Song Huy - Vận hành bởi Antigravity
       </div>
 
       {/* Management Portal Modal */}
