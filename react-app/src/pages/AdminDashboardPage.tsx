@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useOrder } from '../contexts/OrderContext';
 
 export default function AdminDashboardPage() {
-  const { orders, staffAssignments, setStaffAssignments } = useOrder();
+  const { orders, staffAssignments, updateStaffAssignment } = useOrder();
   
   // Real-time Clock
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -20,12 +20,9 @@ export default function AdminDashboardPage() {
     setEditName(currentName);
   };
 
-  const handleSaveStaff = (table: string) => {
+  const handleSaveStaff = async (table: string) => {
     if (editName.trim()) {
-      setStaffAssignments(prev => ({
-        ...prev,
-        [table]: editName.trim()
-      }));
+      await updateStaffAssignment(table, editName.trim());
     }
     setEditingTable(null);
   };

@@ -116,9 +116,9 @@ export default function BaristaPage() {
               <div className="p-md bg-surface-container-low border-t border-outline-variant/30 mt-auto flex gap-2">
                 {order.status === 'PENDING' && (
                   <button 
-                    onClick={() => {
+                    onClick={async () => {
                       if(window.confirm('Bạn có chắc chắn muốn hủy đơn hàng này không?')) {
-                        cancelOrder(order.id);
+                        await cancelOrder(order.id);
                       }
                     }}
                     className="flex-shrink-0 bg-white border border-error/30 text-error hover:bg-error hover:text-white w-12 rounded-xl shadow-sm transition-all active:scale-95 flex items-center justify-center"
@@ -130,7 +130,9 @@ export default function BaristaPage() {
                   </button>
                 )}
                 <button 
-                  onClick={() => updateOrderStatus(order.id, 'READY')}
+                  onClick={async () => {
+                    await updateOrderStatus(order.id, 'READY');
+                  }}
                   className="flex-grow bg-primary text-white hover:bg-primary/90 font-bold text-sm py-3 rounded-xl shadow-lg shadow-primary/20 transition-all active:scale-95 flex items-center justify-center gap-2"
                 >
                   <span className="material-symbols-outlined text-[18px]">check_circle</span>

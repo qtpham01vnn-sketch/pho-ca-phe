@@ -208,11 +208,15 @@ export default function CartPage() {
       <div className="fixed bottom-[72px] md:bottom-24 left-0 w-full bg-surface p-4 border-t border-surface-variant/50 shadow-[0_-8px_30px_rgba(0,0,0,0.05)] z-40">
         <div className="max-w-lg mx-auto">
           <button 
-            onClick={() => {
-              const noteEl = document.getElementById('note') as HTMLTextAreaElement;
-              placeOrder(items, totalPrice, noteEl?.value || '');
-              clearCart();
-              navigate('/order-status');
+            onClick={async () => {
+              try {
+                const noteEl = document.getElementById('note') as HTMLTextAreaElement;
+                await placeOrder(items, totalPrice, noteEl?.value || '');
+                clearCart();
+                navigate('/order-status');
+              } catch (error) {
+                alert('Có lỗi xảy ra khi đặt món. Vui lòng thử lại!');
+              }
             }}
             className="w-full bg-primary hover:bg-primary/90 text-white font-headline-md font-bold text-lg py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/30 active:scale-95 transition-all"
           >

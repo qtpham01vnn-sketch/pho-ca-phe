@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, type ReactNode, useEffect, type Dispatch, type SetStateAction } from 'react';
+import { supabase } from '../lib/supabase';
 import type { CartItem } from './CartContext';
 
 export type OrderStatus = 'PENDING' | 'PREPARING' | 'READY' | 'COMPLETED' | 'CANCELLED';
@@ -18,105 +19,109 @@ interface OrderContextType {
   tableNumber: string;
   setTableNumber: (table: string) => void;
   orders: Order[];
-  placeOrder: (items: CartItem[], totalPrice: number, note?: string) => string;
-  updateOrderStatus: (orderId: string, status: OrderStatus) => void;
-  cancelOrder: (orderId: string) => void;
+  placeOrder: (items: CartItem[], totalPrice: number, note?: string) => Promise<string>;
+  updateOrderStatus: (orderId: string, status: OrderStatus) => Promise<void>;
+  cancelOrder: (orderId: string) => Promise<void>;
   currentCustomerOrder: Order | null;
   getStaffForTable: (table: string) => string;
   staffAssignments: Record<string, string>;
   setStaffAssignments: Dispatch<SetStateAction<Record<string, string>>>;
+  updateStaffAssignment: (table: string, name: string) => Promise<void>;
 }
 
 const OrderContext = createContext<OrderContextType | undefined>(undefined);
 
-// Define default staff assignments
-const DEFAULT_STAFF_ASSIGNMENTS: Record<string, string> = {
-  '01': 'Nguyễn Văn A',
-  '02': 'Nguyễn Văn A',
-  '03': 'Nguyễn Văn A',
-  '04': 'Nguyễn Văn A',
-  '05': 'Nguyễn Văn A',
-  '06': 'Trần Thị B',
-  '07': 'Trần Thị B',
-  '08': 'Trần Thị B',
-  '09': 'Trần Thị B',
-  '10': 'Trần Thị B',
-};
-
 export function OrderProvider({ children }: { children: ReactNode }) {
-  const [tableNumber, setTableNumber] = useState<string>('05'); // Default or extract from URL later
-  const [orders, setOrders] = useState<Order[]>(() => {
-    // Try to load from localStorage first
-    try {
-      const saved = localStorage.getItem('pcf_orders');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        // Convert string dates back to Date objects
-        return parsed.map((o: any) => ({
+  const [tableNumber, setTableNumber] = useState<string>('05');
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [staffAssignments, setStaffAssignments] = useState<Record<string, string>>({});
+
+  // 1. Initial Data Load
+  useEffect(() => {
+    const fetchData = async () => {
+      // Fetch Orders
+      const { data: ordersData, error: ordersError } = await supabase
+        .from('pcf_orders')
+        .select(`
+          *,
+          items:pcf_order_items(*)
+        `)
+        .order('created_at', { ascending: false });
+
+      if (!ordersError && ordersData) {
+        const formattedOrders = ordersData.map((o: any) => ({
           ...o,
-          createdAt: new Date(o.createdAt)
+          tableNumber: o.table_number,
+          totalPrice: o.total_price,
+          staffName: o.staff_name,
+          createdAt: new Date(o.created_at)
         }));
+        setOrders(formattedOrders);
       }
-    } catch (e) {
-      console.error("Could not load orders from localStorage", e);
-    }
-    return [];
-  });
 
-  // Load dynamically adjustable staff assignments from localStorage (or fallback to defaults)
-  const [staffAssignments, setStaffAssignments] = useState<Record<string, string>>(() => {
-    try {
-      const saved = localStorage.getItem('pcf_staff_assignments');
-      return saved ? JSON.parse(saved) : DEFAULT_STAFF_ASSIGNMENTS;
-    } catch (e) {
-      return DEFAULT_STAFF_ASSIGNMENTS;
-    }
-  });
+      // Fetch Staff Assignments
+      const { data: staffData, error: staffError } = await supabase
+        .from('pcf_staff_assignments')
+        .select('*');
 
-  // Sync staffAssignments to localStorage
-  useEffect(() => {
-    localStorage.setItem('pcf_staff_assignments', JSON.stringify(staffAssignments));
-  }, [staffAssignments]);
-
-  const getStaffForTable = (table: string) => {
-    return staffAssignments[table] || 'Nhân viên Khác';
-  };
-
-  // Sync orders to localStorage whenever it changes
-  useEffect(() => {
-    localStorage.setItem('pcf_orders', JSON.stringify(orders));
-  }, [orders]);
-
-  // Listen for changes from other tabs
-  useEffect(() => {
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === 'pcf_orders' && e.newValue) {
-        try {
-          const parsed = JSON.parse(e.newValue);
-          const mapped = parsed.map((o: any) => ({
-            ...o,
-            createdAt: new Date(o.createdAt)
-          }));
-          setOrders(mapped);
-        } catch (error) {
-          console.error("Failed to parse orders from other tab", error);
-        }
-      }
-      
-      if (e.key === 'pcf_staff_assignments' && e.newValue) {
-        try {
-          setStaffAssignments(JSON.parse(e.newValue));
-        } catch (error) {
-          console.error("Failed to parse staff assignments", error);
-        }
+      if (!staffError && staffData) {
+        const assignments: Record<string, string> = {};
+        staffData.forEach((item: any) => {
+          assignments[item.table_number] = item.staff_name;
+        });
+        setStaffAssignments(assignments);
       }
     };
 
-    window.addEventListener('storage', handleStorageChange);
-    return () => window.removeEventListener('storage', handleStorageChange);
+    fetchData();
   }, []);
 
-  // Automatically extract table from URL parameters once when the app loads
+  // 2. Real-time Subscription
+  useEffect(() => {
+    // Subscribe to Orders
+    const orderChannel = supabase
+      .channel('pcf_orders_changes')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'pcf_orders' }, async () => {
+        // When any change happens, we re-fetch the specific order or refresh list
+        // For simplicity in this demo, let's just re-fetch everything to ensure items are joined
+        const { data: updatedOrders, error } = await supabase
+          .from('pcf_orders')
+          .select(`*, items:pcf_order_items(*)`)
+          .order('created_at', { ascending: false });
+        
+        if (!error && updatedOrders) {
+          setOrders(updatedOrders.map((o: any) => ({
+            ...o,
+            tableNumber: o.table_number,
+            totalPrice: o.total_price,
+            staffName: o.staff_name,
+            createdAt: new Date(o.created_at)
+          })));
+        }
+      })
+      .subscribe();
+
+    // Subscribe to Staff Assignments
+    const staffChannel = supabase
+      .channel('pcf_staff_changes')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'pcf_staff_assignments' }, (payload) => {
+        if (payload.new) {
+          const newItem = payload.new as any;
+          setStaffAssignments(prev => ({
+            ...prev,
+            [newItem.table_number]: newItem.staff_name
+          }));
+        }
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(orderChannel);
+      supabase.removeChannel(staffChannel);
+    };
+  }, []);
+
+  // 3. Extract table from URL
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const table = params.get('table');
@@ -125,52 +130,77 @@ export function OrderProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const placeOrder = (items: CartItem[], totalPrice: number, note?: string) => {
-    const newOrder: Order = {
-      id: `PCF-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`,
-      tableNumber,
-      staffName: getStaffForTable(tableNumber), // Tag the staff at the time of order
-      items,
-      totalPrice,
-      status: 'PENDING',
-      createdAt: new Date(),
-      note,
-    };
-    
-    // Update local state, which will trigger the localStorage sync effect
-    setOrders(prev => [...prev, newOrder]);
-    
-    // Auto transition to PREPARING after 3 seconds to simulate Kitchen accepting
-    setTimeout(() => {
-      setOrders(currentOrders => {
-        // Only auto-transition if it hasn't been cancelled
-        const currentOrder = currentOrders.find(o => o.id === newOrder.id);
-        if (currentOrder && currentOrder.status === 'PENDING') {
-          return currentOrders.map(order => 
-            order.id === newOrder.id ? { ...order, status: 'PREPARING' } : order
-          );
-        }
-        return currentOrders;
+  const getStaffForTable = (table: string) => {
+    return staffAssignments[table] || 'Nhân viên Khác';
+  };
+
+  const placeOrder = async (items: CartItem[], totalPrice: number, note?: string) => {
+    const orderId = `PCF-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`;
+    const staffName = getStaffForTable(tableNumber);
+
+    // Insert main order
+    const { error: orderError } = await supabase
+      .from('pcf_orders')
+      .insert({
+        id: orderId,
+        table_number: tableNumber,
+        total_price: totalPrice,
+        status: 'PENDING',
+        staff_name: staffName,
+        note: note
       });
-    }, 3000);
 
-    return newOrder.id;
+    if (orderError) {
+      console.error('Lỗi khi đặt hàng:', orderError);
+      throw orderError;
+    }
+
+    // Insert order items
+    const orderItems = items.map(item => ({
+      order_id: orderId,
+      name: item.name,
+      price: item.price,
+      quantity: item.quantity,
+      note: item.note
+    }));
+
+    const { error: itemsError } = await supabase
+      .from('pcf_order_items')
+      .insert(orderItems);
+
+    if (itemsError) {
+      console.error('Lỗi khi lưu chi tiết món:', itemsError);
+      // We might want to handle partial failure here
+    }
+
+    return orderId;
   };
 
-  const updateOrderStatus = (orderId: string, status: OrderStatus) => {
-    setOrders(prev => 
-      prev.map(order => 
-        order.id === orderId ? { ...order, status } : order
-      )
-    );
+  const updateOrderStatus = async (orderId: string, status: OrderStatus) => {
+    const { error } = await supabase
+      .from('pcf_orders')
+      .update({ status })
+      .eq('id', orderId);
+
+    if (error) {
+      console.error('Lỗi khi cập nhật trạng thái:', error);
+    }
   };
 
-  const cancelOrder = (orderId: string) => {
-    updateOrderStatus(orderId, 'CANCELLED');
+  const cancelOrder = async (orderId: string) => {
+    await updateOrderStatus(orderId, 'CANCELLED');
   };
 
-  // For the customer, find their latest order based on the table number
-  // Skip cancelled orders so they don't block the screen permanently
+  const updateStaffAssignment = async (table: string, name: string) => {
+    const { error } = await supabase
+      .from('pcf_staff_assignments')
+      .upsert({ table_number: table, staff_name: name });
+
+    if (error) {
+      console.error('Lỗi khi cập nhật nhân viên:', error);
+    }
+  };
+
   const currentCustomerOrder = [...orders]
     .filter(o => o.tableNumber === tableNumber && o.status !== 'CANCELLED')
     .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())[0] || null;
@@ -186,7 +216,8 @@ export function OrderProvider({ children }: { children: ReactNode }) {
       currentCustomerOrder,
       getStaffForTable,
       staffAssignments,
-      setStaffAssignments
+      setStaffAssignments,
+      updateStaffAssignment
     }}>
       {children}
     </OrderContext.Provider>
@@ -200,3 +231,4 @@ export function useOrder() {
   }
   return context;
 }
+
