@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Trạng thái đơn hàng - Phố Cà Phê</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#e7bdb1",
+                    "on-secondary-fixed-variant": "#5d4037",
+                    "inverse-on-surface": "#f2f1ed",
+                    "surface-container-low": "#f4f4f0",
+                    "on-primary": "#ffffff",
+                    "outline": "#6c7a71",
+                    "on-primary-fixed": "#002113",
+                    "tertiary-fixed": "#fadcd2",
+                    "tertiary-fixed-dim": "#ddc1b7",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#2c160e",
+                    "tertiary-container": "#b79d94",
+                    "surface-container-high": "#e9e8e4",
+                    "on-secondary": "#ffffff",
+                    "surface": "#faf9f5",
+                    "secondary": "#77574d",
+                    "on-primary-fixed-variant": "#005236",
+                    "primary-fixed": "#6ffbbe",
+                    "on-surface": "#1b1c1a",
+                    "surface-bright": "#faf9f5",
+                    "primary-fixed-dim": "#4edea3",
+                    "on-primary-container": "#00422b",
+                    "inverse-primary": "#4edea3",
+                    "on-error": "#ffffff",
+                    "surface-dim": "#dbdad6",
+                    "surface-variant": "#e3e2df",
+                    "primary": "#006c49",
+                    "on-tertiary-container": "#47352e",
+                    "outline-variant": "#bbcabf",
+                    "on-tertiary-fixed": "#271812",
+                    "primary-container": "#10b981",
+                    "secondary-container": "#fed3c7",
+                    "on-secondary-container": "#795950",
+                    "surface-container": "#efeeea",
+                    "surface-container-highest": "#e3e2df",
+                    "tertiary": "#6f5a52",
+                    "on-tertiary-fixed-variant": "#56423b",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#006c49",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#ffdbd0",
+                    "inverse-surface": "#2f312e",
+                    "on-surface-variant": "#3c4a42",
+                    "background": "#faf9f5",
+                    "on-background": "#1b1c1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "40px",
+                    "gutter": "16px",
+                    "xs": "4px",
+                    "sm": "12px",
+                    "lg": "24px",
+                    "md": "16px",
+                    "container-margin": "20px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "label-md": ["Plus Jakarta Sans"],
+                    "headline-md": ["Be Vietnam Pro"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "label-sm": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Be Vietnam Pro"],
+                    "headline-lg-mobile": ["Be Vietnam Pro"],
+                    "headline-xl": ["Be Vietnam Pro"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-gutter h-16 bg-surface dark:bg-surface-dim shadow-sm dark:shadow-none">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed-dim hover:bg-surface-variant transition-colors p-2 rounded-full active:scale-95 duration-100" data-icon="menu">menu</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary dark:text-primary-fixed">Phố Cà Phê</h1>
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed-dim hover:bg-surface-variant transition-colors p-2 rounded-full active:scale-95 duration-100" data-icon="account_circle">account_circle</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 pb-28 px-container-margin max-w-lg mx-auto">
+<!-- Status Hero Card -->
+<section class="mb-lg">
+<div class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-surface-variant/30 text-center">
+<div class="w-24 h-24 mx-auto mb-md bg-primary-container/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[48px] animate-pulse" style="font-variation-settings: 'FILL' 1;">restaurant_menu</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary mb-xs">Đơn hàng đang được pha chế</h2>
+<p class="font-body-md text-on-surface-variant mb-md">Cảm ơn bạn đã kiên nhẫn. Barista đang chuẩn bị đồ uống cho bạn.</p>
+<!-- Progress Indicator -->
+<div class="flex items-center justify-between gap-2 px-sm">
+<div class="flex-1 h-2 bg-primary rounded-full"></div>
+<div class="flex-1 h-2 bg-primary rounded-full"></div>
+<div class="flex-1 h-2 bg-primary/20 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-1/2 rounded-full"></div>
+</div>
+<div class="flex-1 h-2 bg-primary/10 rounded-full"></div>
+</div>
+<div class="flex justify-between mt-2 font-label-sm text-outline">
+<span>Đã nhận</span>
+<span class="text-primary font-semibold">Đang pha chế</span>
+<span>Hoàn tất</span>
+</div>
+</div>
+</section>
+<!-- Bento Info Grid -->
+<div class="grid grid-cols-2 gap-md mb-lg">
+<!-- Time Card -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_4px_20px_rgba(0,0,0,0.04)] flex flex-col items-center justify-center">
+<span class="font-label-sm text-on-surface-variant mb-xs">Dự kiến xong</span>
+<span class="font-headline-md text-headline-md text-secondary">~12 phút</span>
+<span class="font-label-sm text-outline-variant">Bàn số 05</span>
+</div>
+<!-- Support Card -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_4px_20px_rgba(0,0,0,0.04)] flex flex-col items-center justify-center hover:bg-surface-container-high transition-all cursor-pointer">
+<span class="material-symbols-outlined text-secondary mb-xs" data-icon="support_agent">support_agent</span>
+<span class="font-label-md text-label-md text-secondary">Cần hỗ trợ?</span>
+<span class="font-label-sm text-outline-variant">Nhấn để gọi</span>
+</div>
+<!-- QR Code Verification Card (Spans full width or looks bento) -->
+<div class="col-span-2 bg-secondary-container/30 rounded-xl p-lg flex flex-col md:flex-row items-center gap-lg border border-secondary-fixed-dim/20">
+<div class="bg-white p-2 rounded-lg shadow-sm">
+<img alt="QR Code for Order Verification" class="w-32 h-32" data-alt="A high-contrast QR code printed on a clean white square card with rounded corners, reflecting a modern and secure digital payment aesthetic. The scene is lit with soft overhead lighting typical of a high-end minimalist cafe, with subtle coffee brown and vibrant green highlights in the blurred background. The style is professional and corporate, emphasizing efficiency and trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM1BBGMFKjvyyI-itinG6F7AK5ybTVfxzcJ_VCRjl0x7P29mb-M0sd9ieHe_5v9LNtKkh5NNCo3iCQR0k7qdGP_JJyflp8gy08Q4TVsVeH79R5Nt995MkxS8HqM-Ml0LQnNP49LREzhKzd0DWLh8ZGx_P5GC5Bhch3xeaE4xzmj11e1yS0lSkMEOceW4Tvgu777RulfstJKXtT5sWKB9RoB6wxW4jGiTs0pzxIW00U3QLiEqhuiSK8uxjNko--UJIzR7UoNOq7CbC1"/>
+</div>
+<div class="text-center md:text-left">
+<h3 class="font-headline-md text-headline-md text-on-secondary-container mb-xs">Mã đối chiếu</h3>
+<p class="font-body-md text-on-secondary-container/80 mb-md">Vui lòng đưa mã này cho nhân viên khi bạn nhận đồ tại quầy hoặc thanh toán.</p>
+<span class="bg-on-secondary-container text-white px-md py-1 rounded-full font-label-md tracking-widest">#PCF-20241022</span>
+</div>
+</div>
+</div>
+<!-- Order Summary Section -->
+<section class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-surface-variant/30">
+<div class="flex justify-between items-center mb-md border-b border-outline-variant pb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface">Chi tiết đơn hàng</h3>
+<span class="text-secondary font-semibold font-body-md">2 món</span>
+</div>
+<ul class="space-y-md">
+<li class="flex justify-between items-center">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-surface-container rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Cà phê muối" class="w-full h-full object-cover" data-alt="A close-up of a premium Vietnamese salt coffee served in a clear glass, showing layers of dark espresso and creamy white salted foam on top. The lighting is warm and inviting, capturing the rich texture of the foam and the deep brown of the coffee. The overall mood is appetizing and sophisticated, consistent with a high-end modern cafe aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzGX4tYuY0VHThKHZhm1aNGzYykCveHLRujdbjrYo-EHMwJEBMl00O07FWBZTuYeCCADK2pXNW2NLkpGG5idw8yEPM_4v_pnUTXbF03FzdhoU89ulXTnw0xWq9fj4Za9v7g6tWCupIQDWD_bglgIndA6PqBUMDLVPZyHiy1UPCrMWaBJfUT8Q_pdvkMbbDw9ok7aBA_1_9pSqod6B4VwhEmrnEppaR7MV1M6aKUn0zji_2N92wgMi-cLXd-QBVH7X20EyJBqtU9KmH"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Cà Phê Muối Phố</p>
+<p class="font-label-sm text-outline">Size M • Ít đá</p>
+</div>
+</div>
+<span class="font-label-md text-primary">x1</span>
+</li>
+<li class="flex justify-between items-center">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-surface-container rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Bánh Croissant" class="w-full h-full object-cover" data-alt="A freshly baked, golden-brown flaky croissant sitting on a minimalist ceramic plate. The pastry has a beautiful laminated texture, reflecting warm soft lighting that highlights its buttery sheen. The background is a clean creamy white surface, maintaining the bright and modern corporate cafe style with a focused, high-quality food photography feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsaaVAXmBCTvW513JtIVpPcPTJOoXLzxPG-dzSsNS7JX49hZUi3g6K22nb3lb5ygCeGS5yWPfkTlMh_4UWt9GlCIpssw0VTftBWT2hByqGl3Uyk4IUseQYQ9CyXjdKVKbfYyWLh7zdkvaa3PRkJJEMy7XBJO2LrmnOkyuP0CHhDEKbf-VqEQDQ6MbqK8_fzN5t0sagnqHmYGSrFEp_cYyPuGV9MUaa_Id7M8bOIShXXfkZUlqkyJtQkkVEr1-iTiM1ry6yUk-mBtlk"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Bánh Croissant Bơ</p>
+<p class="font-label-sm text-outline">Hâm nóng</p>
+</div>
+</div>
+<span class="font-label-md text-primary">x1</span>
+</li>
+</ul>
+<div class="mt-lg pt-md border-t border-dashed border-outline-variant">
+<div class="flex justify-between font-label-md text-outline mb-xs">
+<span>Tạm tính</span>
+<span>85.000đ</span>
+</div>
+<div class="flex justify-between font-headline-md text-headline-md text-primary">
+<span>Tổng thanh toán</span>
+<span>85.000đ</span>
+</div>
+</div>
+</section>
+<!-- Action Button -->
+<div class="mt-lg flex gap-md">
+<button class="flex-1 py-3 px-lg bg-primary text-white rounded-full font-headline-md text-[18px] shadow-lg hover:brightness-110 active:scale-95 transition-all">
+                Tiếp tục đặt món
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface-container-lowest rounded-t-xl shadow-[0_-4px_20px_rgba(0,0,0,0.04)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-high transition-all p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="restaurant_menu">restaurant_menu</span>
+<span class="font-label-sm text-label-sm">Thực đơn</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-full px-4 py-1 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined fill-icon" data-icon="shopping_basket">shopping_basket</span>
+<span class="font-label-sm text-label-sm">Đơn hàng</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-high transition-all p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="font-label-sm text-label-sm">Thông báo</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-high transition-all p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Cá nhân</span>
+</a>
+</nav>
+</body></html>

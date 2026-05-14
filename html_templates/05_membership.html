@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Be+Vietnam+Pro:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #faf9f5;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#795950",
+                        "inverse-surface": "#2f312e",
+                        "on-tertiary-fixed": "#271812",
+                        "on-secondary-fixed-variant": "#5d4037",
+                        "secondary": "#77574d",
+                        "tertiary-fixed": "#fadcd2",
+                        "outline": "#6c7a71",
+                        "on-secondary-fixed": "#2c160e",
+                        "surface-container": "#efeeea",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#4edea3",
+                        "primary-fixed-dim": "#4edea3",
+                        "on-background": "#1b1c1a",
+                        "primary": "#006c49",
+                        "surface": "#faf9f5",
+                        "surface-tint": "#006c49",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#b79d94",
+                        "primary-container": "#10b981",
+                        "tertiary": "#6f5a52",
+                        "surface-container-high": "#e9e8e4",
+                        "inverse-on-surface": "#f2f1ed",
+                        "secondary-container": "#fed3c7",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#bbcabf",
+                        "surface-container-highest": "#e3e2df",
+                        "surface-container-low": "#f4f4f0",
+                        "on-primary-container": "#00422b",
+                        "surface-variant": "#e3e2df",
+                        "on-tertiary-container": "#47352e",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#002113",
+                        "tertiary-fixed-dim": "#ddc1b7",
+                        "surface-dim": "#dbdad6",
+                        "secondary-fixed-dim": "#e7bdb1",
+                        "on-primary-fixed-variant": "#005236",
+                        "primary-fixed": "#6ffbbe",
+                        "on-surface-variant": "#3c4a42",
+                        "on-surface": "#1b1c1a",
+                        "background": "#faf9f5",
+                        "surface-bright": "#faf9f5",
+                        "secondary-fixed": "#ffdbd0",
+                        "on-tertiary-fixed-variant": "#56423b",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "sm": "12px",
+                        "base": "8px",
+                        "md": "16px",
+                        "container-margin": "20px",
+                        "xl": "40px",
+                        "lg": "24px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Be Vietnam Pro"],
+                        "headline-lg": ["Be Vietnam Pro"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Be Vietnam Pro"],
+                        "headline-lg-mobile": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-gutter h-16 bg-surface shadow-sm">
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined text-primary hover:bg-surface-variant transition-colors p-2 rounded-full">menu</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Phố Cà Phê</h1>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-2xl">account_circle</span>
+</div>
+</header>
+<main class="pt-20 pb-28 px-container-margin max-w-md mx-auto">
+<!-- Membership Card Section -->
+<section class="mb-lg">
+<div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary to-primary-container p-lg shadow-lg text-on-primary h-52 flex flex-col justify-between">
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
+<div class="flex justify-between items-start z-10">
+<div>
+<p class="font-label-md text-label-md opacity-90">Thành viên Phố Cà Phê</p>
+<h2 class="font-headline-md text-headline-md mt-xs">Nguyễn Văn A</h2>
+</div>
+<div class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="font-label-md text-label-md">Hạng Vàng</span>
+</div>
+</div>
+<div class="z-10 flex justify-between items-end">
+<div>
+<p class="font-label-sm text-label-sm opacity-80">Số điểm hiện có</p>
+<div class="flex items-baseline gap-xs">
+<span class="font-headline-xl text-headline-xl">1,250</span>
+<span class="font-label-md text-label-md">điểm</span>
+</div>
+</div>
+<button class="bg-white/20 backdrop-blur-md text-white border border-white/30 px-4 py-2 rounded-lg font-label-md text-label-md flex items-center gap-sm hover:bg-white/30 transition-all active:scale-95">
+<span class="material-symbols-outlined">qr_code_2</span>
+                        Mã QR
+                    </button>
+</div>
+</div>
+</section>
+<!-- QR Code Focus (Asymmetric Bento Style) -->
+<section class="mb-xl">
+<div class="bg-white rounded-xl p-lg shadow-sm border border-outline-variant/30 flex flex-col items-center text-center">
+<p class="font-headline-md text-headline-md text-on-surface mb-md">Quét tại quầy</p>
+<div class="bg-surface-container-low p-md rounded-xl mb-md">
+<img alt="Membership QR Code" class="w-40 h-40" data-alt="A clean, high-contrast digital QR code displayed on a modern smartphone screen mockup. The QR code is perfectly centered against a soft, creamy white background that reflects a professional light-mode UI. The surrounding design elements feature subtle coffee-colored accents and minimalist icons, creating a sophisticated and trustworthy atmosphere for a premium cafe application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEw1fJ-aWNZDR1X9cljhPPJlnDmVjih7I08rLw5VaPSi8GjeUYEMh1OMSvg9NTwmWrmOsG0zEndywJvMAwZMkWBvps6cMfZ2iokcgtvISO4S38jiCek3mQ_CIMRU9u9ZeIe2lzz8JI7nDKJ4Ear3KC4np5LvL0obflJ4nIUs66g2vR4H7XqhAwXwOwQgLuqVcrQLsML6sQZMnu1tV-ecfbj7S1gznrmRq1vPVsCvjomVf3A8pzjdH6gid60hTkSKr8iQaIjyWE7_42"/>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[240px]">Đưa mã này cho nhân viên để tích điểm hoặc đổi ưu đãi</p>
+</div>
+</section>
+<!-- Rewards Section (Redeemable) -->
+<section class="mb-xl">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Ưu đãi đổi điểm</h3>
+<span class="text-primary font-label-md text-label-md">Xem tất cả</span>
+</div>
+<div class="grid grid-cols-1 gap-md">
+<!-- Reward Item 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-md flex items-center gap-md shadow-sm border border-outline-variant/20 hover:translate-x-1 transition-transform">
+<div class="w-16 h-16 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-3xl">sell</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-md text-label-md text-on-surface">Giảm 10.000đ cho đơn hàng</h4>
+<p class="font-body-md text-body-md text-primary font-semibold">200 điểm</p>
+</div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-full font-label-sm text-label-sm active:scale-95 transition-transform">Đổi ngay</button>
+</div>
+<!-- Reward Item 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-md flex items-center gap-md shadow-sm border border-outline-variant/20 hover:translate-x-1 transition-transform">
+<div class="w-16 h-16 rounded-lg overflow-hidden">
+<img alt="Croissant" class="w-full h-full object-cover" data-alt="A close-up, appetizing shot of a perfectly flaky, golden-brown croissant sitting on a minimalist white ceramic plate. The lighting is soft and natural, emphasizing the buttery layers and crispy texture of the pastry. The background is a clean, creamy white marble surface, creating a modern and luxurious cafe aesthetic consistent with a high-end Vietnamese coffee shop brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgdid0mXibchlL3BGczfHS1gqzqhMm0eOlQLvilPkQPHw3WfMvc2WG_ojIeZIGH29mVLet-jMiKv5Cm_4vF3GlyuiBKAIg6aOzkKkDzUurAvvHHZJD0I5IfUuP_6Ya7sRCoSH5zRkEWogOkfcYt4FaqGXcTiRRXot7mFnyl2mHdFp3pTO6ISXEAiF2g2WV1p8CuXSWiLZZhqdO96Fl360MhI00r9AAohctyOHFj89vQWLm5sUSpjY-arm_k-dfVah4Slwxy4OdbRs5"/>
+</div>
+<div class="flex-1">
+<h4 class="font-label-md text-label-md text-on-surface">Tặng bánh Croissant bơ Pháp</h4>
+<p class="font-body-md text-body-md text-primary font-semibold">450 điểm</p>
+</div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-full font-label-sm text-label-sm active:scale-95 transition-transform">Đổi ngay</button>
+</div>
+</div>
+</section>
+<!-- Point History -->
+<section class="mb-xl">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md">Lịch sử tích điểm</h3>
+<div class="bg-white rounded-xl shadow-sm border border-outline-variant/20 overflow-hidden">
+<div class="p-md flex items-center justify-between border-b border-outline-variant/10">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">local_cafe</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Phố Cà Phê - Trần Hưng Đạo</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Hôm nay, 08:30</p>
+</div>
+</div>
+<span class="font-label-md text-label-md text-primary">+45đ</span>
+</div>
+<div class="p-md flex items-center justify-between border-b border-outline-variant/10">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">local_cafe</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Phố Cà Phê - Nguyễn Huệ</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Hôm qua, 15:20</p>
+</div>
+</div>
+<span class="font-label-md text-label-md text-primary">+82đ</span>
+</div>
+<div class="p-md flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-error-container/20 flex items-center justify-center text-error">
+<span class="material-symbols-outlined">redeem</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Đổi quà: Giảm 20k</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">22 Th05, 2024</p>
+</div>
+</div>
+<span class="font-label-md text-label-md text-error">-350đ</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Nav Bar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface-container-lowest shadow-[0_-4px_20px_rgba(0,0,0,0.04)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined">restaurant_menu</span>
+<span class="font-label-sm text-label-sm">Thực đơn</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined">shopping_basket</span>
+<span class="font-label-sm text-label-sm">Đơn hàng</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-label-sm text-label-sm">Thông báo</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-sm text-label-sm">Cá nhân</span>
+</a>
+</nav>
+</body></html>

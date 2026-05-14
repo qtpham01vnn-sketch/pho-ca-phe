@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Giỏ hàng - Phố Cà Phê</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Be+Vietnam+Pro:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#006c49",
+                        secondary: "#77574d",
+                        surface: "#faf9f5",
+                        "surface-variant": "#e3e2df",
+                        "on-surface": "#1b1c1a",
+                        "on-surface-variant": "#3c4a42",
+                        "outline-variant": "#bbcabf",
+                        error: "#ba1a1a",
+                        "primary-container": "#10b981",
+                        "on-primary-container": "#00422b",
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        heading: ['Be Vietnam Pro', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-sans selection:bg-primary/20 antialiased pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-4 h-16 bg-surface/90 backdrop-blur-md border-b border-surface-variant/50">
+<button class="material-symbols-outlined p-2 hover:bg-surface-variant transition-colors rounded-full text-on-surface active:scale-95">arrow_back</button>
+<h1 class="font-heading text-lg font-bold text-on-surface">Giỏ hàng</h1>
+<button class="material-symbols-outlined p-2 hover:bg-surface-variant transition-colors rounded-full text-on-surface active:scale-95">more_vert</button>
+</header>
+<main class="pt-20 px-4 max-w-lg mx-auto space-y-6">
+<!-- Bàn / Vị trí -->
+<div class="bg-white p-4 rounded-2xl shadow-sm border border-surface-variant flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">table_restaurant</span>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant font-medium">Vị trí phục vụ</p>
+<p class="font-heading font-bold text-on-surface">Bàn số 05</p>
+</div>
+</div>
+<button class="text-sm font-semibold text-primary px-3 py-1 bg-primary/5 rounded-full hover:bg-primary/10 transition-colors">Thay đổi</button>
+</div>
+<!-- Order List -->
+<section>
+<h2 class="font-heading font-bold text-lg mb-3">Món đã chọn (2)</h2>
+<div class="space-y-3">
+<!-- Item 1 -->
+<div class="bg-white p-3 rounded-2xl shadow-sm border border-surface-variant flex gap-3 relative overflow-hidden group">
+<div class="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
+<img alt="Bạc xỉu đá" class="w-full h-full object-cover" data-alt="A beautifully layered Vietnamese iced coffee (Bạc Xỉu) in a modern fluted glass, showing the distinct layers of white condensed milk, rich brown espresso, and ice. The background is a soft, out-of-focus cafe interior with warm lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHX1h8a5y2F47o6V83b-T7BwZJ_iJclcE2TOf9bZ82eH45Vrd48Xj0QvB_J561q-A20lT9W1QcW_r-ZJ4B9LndfV3XoK1mYvV-m5M2mN7c98o_JzTf5n6IQQ_7-0X91n1f17i6c-9s4-lq9XQ3J_6w5R2_zY-9bZ2N4G6D0eH4_Q_T6B0q_tL6b6zI7nZ0n5F-c0q9yMZbvj7oO5l83w"/>
+</div>
+<div class="flex-1 flex flex-col justify-between py-0.5">
+<div>
+<h3 class="font-heading font-semibold text-[15px] leading-tight text-on-surface">Bạc Xỉu Đá</h3>
+<p class="text-xs text-on-surface-variant mt-1 line-clamp-1">Size M, Ít ngọt</p>
+</div>
+<div class="flex items-center justify-between mt-2">
+<span class="font-bold text-primary">29.000đ</span>
+<!-- Quantity Control -->
+<div class="flex items-center gap-3 bg-surface rounded-full px-2 py-1 border border-surface-variant">
+<button class="material-symbols-outlined text-[18px] text-on-surface-variant">remove</button>
+<span class="text-sm font-semibold w-4 text-center">1</span>
+<button class="material-symbols-outlined text-[18px] text-primary">add</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="bg-white p-3 rounded-2xl shadow-sm border border-surface-variant flex gap-3 relative overflow-hidden">
+<div class="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
+<img alt="Bánh Croissant" class="w-full h-full object-cover" data-alt="A freshly baked, golden-brown flaky croissant sitting on a minimalist ceramic plate. The pastry has a beautiful laminated texture, reflecting warm soft lighting that highlights its buttery sheen. The background is a clean creamy white surface, maintaining the bright and modern corporate cafe style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsaaVAXmBCTvW513JtIVpPcPTJOoXLzxPG-dzSsNS7JX49hZUi3g6K22nb3lb5ygCeGS5yWPfkTlMh_4UWt9GlCIpssw0VTftBWT2hByqGl3Uyk4IUseQYQ9CyXjdKVKbfYyWLh7zdkvaa3PRkJJEMy7XBJO2LrmnOkyuP0CHhDEKbf-VqEQDQ6MbqK8_fzN5t0sagnqHmYGSrFEp_cYyPuGV9MUaa_Id7M8bOIShXXfkZUlqkyJtQkkVEr1-iTiM1ry6yUk-mBtlk"/>
+</div>
+<div class="flex-1 flex flex-col justify-between py-0.5">
+<div>
+<h3 class="font-heading font-semibold text-[15px] leading-tight text-on-surface">Bánh Croissant Bơ</h3>
+<p class="text-xs text-on-surface-variant mt-1 line-clamp-1">Hâm nóng</p>
+</div>
+<div class="flex items-center justify-between mt-2">
+<span class="font-bold text-primary">35.000đ</span>
+<!-- Quantity Control -->
+<div class="flex items-center gap-3 bg-surface rounded-full px-2 py-1 border border-surface-variant">
+<button class="material-symbols-outlined text-[18px] text-on-surface-variant">remove</button>
+<span class="text-sm font-semibold w-4 text-center">2</span>
+<button class="material-symbols-outlined text-[18px] text-primary">add</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full mt-4 py-3 border-2 border-dashed border-primary/40 text-primary font-semibold rounded-xl flex items-center justify-center gap-2 hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+            Thêm món khác
+        </button>
+</section>
+<!-- Note for Kitchen -->
+<section>
+<div class="bg-white rounded-2xl p-4 shadow-sm border border-surface-variant">
+<label class="flex items-center gap-2 mb-2 font-medium text-sm text-on-surface" for="note">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">edit_note</span>
+                Ghi chú cho quán
+            </label>
+<textarea class="w-full bg-surface border-none rounded-xl text-sm p-3 focus:ring-1 focus:ring-primary placeholder:text-outline-variant resize-none" id="note" placeholder="Bạn có dặn dò gì không? (VD: Lấy thêm giấy ăn...)" rows="2"></textarea>
+</div>
+</section>
+<!-- Payment Method -->
+<section>
+<h2 class="font-heading font-bold text-lg mb-3">Phương thức thanh toán</h2>
+<div class="space-y-2">
+<label class="flex items-center justify-between bg-white p-4 rounded-xl border border-primary ring-1 ring-primary/20 shadow-sm cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<span class="font-semibold text-on-surface">Tiền mặt tại quầy</span>
+</div>
+<input checked="" class="w-5 h-5 text-primary border-outline-variant focus:ring-primary" name="payment" type="radio"/>
+</label>
+<label class="flex items-center justify-between bg-white p-4 rounded-xl border border-surface-variant hover:border-outline-variant transition-colors cursor-pointer opacity-70">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-variant rounded-full flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+</div>
+<div>
+<span class="font-semibold text-on-surface block">Chuyển khoản (Đang bảo trì)</span>
+</div>
+</div>
+<input class="w-5 h-5 text-primary border-outline-variant focus:ring-primary" disabled="" name="payment" type="radio"/>
+</label>
+</div>
+</section>
+<!-- Summary & Point Usage -->
+<section class="bg-white rounded-2xl p-5 shadow-sm border border-surface-variant space-y-4">
+<!-- Point Toggle -->
+<div class="flex items-center justify-between pb-4 border-b border-surface-variant border-dashed">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-500" style="font-variation-settings: 'FILL' 1;">stars</span>
+<div>
+<span class="font-semibold text-sm block">Dùng điểm (+1.250 điểm)</span>
+<span class="text-xs text-on-surface-variant">Tối đa dùng 10.000đ (100 điểm)</span>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Calculations -->
+<div class="space-y-2 text-sm">
+<div class="flex justify-between text-on-surface-variant">
+<span>Tạm tính (3 sản phẩm)</span>
+<span>99.000đ</span>
+</div>
+<div class="flex justify-between text-primary font-medium">
+<span>Khuyến mãi / Giảm giá</span>
+<span>-0đ</span>
+</div>
+</div>
+<div class="flex justify-between items-center pt-2 border-t border-surface-variant">
+<span class="font-heading font-bold text-on-surface">Tổng thanh toán</span>
+<span class="font-heading font-bold text-xl text-primary">99.000đ</span>
+</div>
+<p class="text-right text-xs text-secondary font-medium">Dự kiến tích thêm <span class="font-bold">+99 điểm</span></p>
+</section>
+</main>
+<!-- Fixed Bottom Action -->
+<div class="fixed bottom-0 w-full bg-white p-4 pb-8 border-t border-surface-variant/50 shadow-[0_-8px_30px_rgba(0,0,0,0.05)] z-50">
+<div class="max-w-lg mx-auto">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-heading font-bold text-lg py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/30 active:scale-95 transition-all">
+<span class="material-symbols-outlined">send</span>
+            Đặt Món • 99.000đ
+        </button>
+</div>
+</div>
+</body></html>
