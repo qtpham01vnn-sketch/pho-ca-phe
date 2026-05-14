@@ -1,4 +1,3 @@
-import React from 'react';
 import { useOrder } from '../contexts/OrderContext';
 
 export default function StaffHistoryPage() {

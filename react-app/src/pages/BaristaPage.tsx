@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { useOrder } from '../contexts/OrderContext';
 
 export default function BaristaPage() {
   const { orders, updateOrderStatus, cancelOrder } = useOrder();
-  const navigate = useNavigate();
 
   // Live Clock
   const [currentTime, setCurrentTime] = useState(new Date());

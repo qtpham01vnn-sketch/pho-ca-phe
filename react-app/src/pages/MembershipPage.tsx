@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function MembershipPage() {
   return (
     <div className="pb-8">

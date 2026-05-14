@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useOrder } from '../contexts/OrderContext';
 import { useAuth } from '../contexts/AuthContext';
@@ -16,7 +16,7 @@ export default function WelcomePage() {
   const [error, setError] = useState('');
 
   // Long press logic
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<any>(null);
   const handleLongPressStart = () => {
     timerRef.current = setTimeout(() => {
       setShowPortal(true);

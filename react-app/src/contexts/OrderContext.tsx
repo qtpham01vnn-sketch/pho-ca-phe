@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { createContext, useContext, useState, type ReactNode, useEffect, type Dispatch, type SetStateAction } from 'react';
 import type { CartItem } from './CartContext';
 
 export type OrderStatus = 'PENDING' | 'PREPARING' | 'READY' | 'COMPLETED' | 'CANCELLED';
@@ -24,7 +24,7 @@ interface OrderContextType {
   currentCustomerOrder: Order | null;
   getStaffForTable: (table: string) => string;
   staffAssignments: Record<string, string>;
-  setStaffAssignments: React.Dispatch<React.SetStateAction<Record<string, string>>>;
+  setStaffAssignments: Dispatch<SetStateAction<Record<string, string>>>;
 }
 
 const OrderContext = createContext<OrderContextType | undefined>(undefined);
